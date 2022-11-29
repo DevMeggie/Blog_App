@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-public class PostListPages {
+public class PostPage {
     private Integer pageNumber = 0;
     private Integer pageSize = 2;
     private Sort.Direction sortDirection = Sort.Direction.ASC;
-    private String sortBy = "name";
+    private String sortBy = "title";
 
 }
