@@ -1,0 +1,28 @@
+package com.devmeggie.blog_app.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Entity
+@Table(name="like_table")
+public class Like extends BaseClass{
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    private Post post;
+
+}

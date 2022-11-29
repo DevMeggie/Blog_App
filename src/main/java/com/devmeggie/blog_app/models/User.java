@@ -1,10 +1,12 @@
 package com.devmeggie.blog_app.models;
 
+import com.devmeggie.blog_app.enums.Gender;
+import com.devmeggie.blog_app.enums.Role;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
@@ -26,4 +28,16 @@ public class User extends BaseClass{
 
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Gender gender;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> post = new ArrayList<>();
+
 }

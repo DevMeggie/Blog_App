@@ -30,5 +30,4 @@ public class BaseClass {
     @UpdateTimestamp
     private LocalDateTime dataModified;
 
-
 }
