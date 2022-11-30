@@ -5,7 +5,6 @@ import com.devmeggie.blog_app.dtos.UserSignUpDto;
 import com.devmeggie.blog_app.models.User;
 import com.devmeggie.blog_app.services.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

@@ -14,9 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user_table")
-public class User extends BaseClass{
-
+@Table(name="user_table")
+public class User extends BaseClass {
     @Column(nullable = false,unique = true,length = 50)
     private String email;
 
