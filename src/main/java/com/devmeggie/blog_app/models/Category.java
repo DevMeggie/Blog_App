@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
+@Data
 @Table(name="category")
 public class Category {
     @Id
@@ -20,7 +21,7 @@ public class Category {
     @Column(nullable = false,unique = true,length = 50)
     private String name ;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Post> post = new ArrayList<>();
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Post>post = new ArrayList<>();
 
 }

@@ -1,6 +1,6 @@
 package com.devmeggie.blog_app.exceptions;
 
-public class UnauthorizedException extends RuntimeException{
+public class UnauthorizedException extends RuntimeException {
     private String message;
 
     public UnauthorizedException() {
@@ -9,8 +9,9 @@ public class UnauthorizedException extends RuntimeException{
 
     }
 
-    public UnauthorizedException(String msg){
+    public UnauthorizedException(String msg) {
         super(msg);
-        this.message=msg;
+        this.message = msg;
     }
 }
+

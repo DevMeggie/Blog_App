@@ -5,6 +5,7 @@ import com.devmeggie.blog_app.dtos.UserSignUpDto;
 import com.devmeggie.blog_app.enums.Gender;
 import com.devmeggie.blog_app.enums.Role;
 import com.devmeggie.blog_app.exceptions.AlreadyExistException;
+import com.devmeggie.blog_app.exceptions.NotFoundException;
 import com.devmeggie.blog_app.models.User;
 import com.devmeggie.blog_app.repositories.UserRepo;
 import com.devmeggie.blog_app.services.UserService;
@@ -42,15 +43,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User logIn(UserLogInDto userLoginDto) {
+    public User logIn(UserLogInDto userLoginDto){
 
         String email = userLoginDto.getEmail();
         String password = userLoginDto.getPassword();
-
         User user = userRepo.findByEmailAndPassword(email, password);
-        if (user.getEmail().equals(user.getPassword())) {
+        if (user != null) {
+            return user;
         }
-        return user;
+        else {
+            throw new NotFoundException("user not found");
+        }
     }
 
     @Override

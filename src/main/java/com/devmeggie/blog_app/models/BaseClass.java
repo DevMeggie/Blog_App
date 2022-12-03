@@ -7,10 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -24,10 +21,11 @@ public class BaseClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @CreationTimestamp
     private LocalDateTime dateCreated;
 
     @UpdateTimestamp
-    private LocalDateTime dataModified;
+    private LocalDateTime dateModified;
 
 }

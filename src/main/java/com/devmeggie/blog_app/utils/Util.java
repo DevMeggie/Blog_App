@@ -21,7 +21,7 @@ public class Util {
     }
 
     public Long loggedInUserById(){
-        Long userId = (Long) httpSession.getAttribute("User_id");
+        Long userId = (Long) httpSession.getAttribute("user_id");
         if(userId == null) throw new UnauthorizedException("Please log in!");
         return userId;
     }
