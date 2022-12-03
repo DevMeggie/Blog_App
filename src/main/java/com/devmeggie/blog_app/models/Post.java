@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
-@ToString
 @Table(name ="post")
 public class Post extends BaseClass{
 

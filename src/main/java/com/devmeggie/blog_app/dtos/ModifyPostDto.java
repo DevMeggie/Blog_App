@@ -2,19 +2,14 @@ package com.devmeggie.blog_app.dtos;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import java.time.LocalDateTime;
-
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Builder
-public class UpLoadPostDto {
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class ModifyPostDto {
     private String title;
     private String imageUrl;
     private String content;
-
-
 
 }

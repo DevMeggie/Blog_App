@@ -1,5 +1,6 @@
 package com.devmeggie.blog_app.services.servicesImpl;
 
+import com.devmeggie.blog_app.dtos.ModifyPostDto;
 import com.devmeggie.blog_app.dtos.UpLoadPostDto;
 import com.devmeggie.blog_app.enums.Role;
 import com.devmeggie.blog_app.exceptions.NotFoundException;
@@ -24,13 +25,13 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepo postRepo;
-    private final HttpSession httpSession;
     private final UserService userService;
     private final CategoryRepo categoryRepo;
     private final UserRepo userRepo;
@@ -89,10 +90,35 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post viewPostById(Long postId) {
-        return postRepo.findById(postId).orElseThrow(()-> new NotFoundException("post doesnt exist"));
+        return postRepo.findById(postId).orElseThrow(() -> new NotFoundException("post doesnt exist"));
+    }
+
+
+    @Override
+    public Post modifyPost(Long id, ModifyPostDto modifyPostDto) {
+        Long userId = util.loggedInUserById();
+        User user = util.findUserById(userId);
+
+        if (!user.getRole().equals(Role.ADMIN)) {
+            throw new UnauthorizedException("sorry! you dont have access");
+        }
+
+        Post post1 = postRepo.findById(id).orElseThrow(() -> new NotFoundException("user doesn't exist"));
+        if (Objects.nonNull(modifyPostDto.getTitle()) && !"".equalsIgnoreCase(modifyPostDto.getTitle())) {
+            post1.setTitle(modifyPostDto.getTitle());
+        }
+
+        if (Objects.nonNull(modifyPostDto.getImageUrl()) && !"".equalsIgnoreCase(modifyPostDto.getImageUrl())) {
+            post1.setImageUrl(modifyPostDto.getImageUrl());
+        }
+
+        if (Objects.nonNull(modifyPostDto.getContent()) && !"".equalsIgnoreCase(modifyPostDto.getContent())) {
+            post1.setContent(modifyPostDto.getContent());
+        }
+
+        return postRepo.save(post1);
     }
 }
-
 
 
 

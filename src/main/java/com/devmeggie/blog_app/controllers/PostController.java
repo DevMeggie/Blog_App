@@ -1,5 +1,6 @@
 package com.devmeggie.blog_app.controllers;
 
+import com.devmeggie.blog_app.dtos.ModifyPostDto;
 import com.devmeggie.blog_app.dtos.UpLoadPostDto;
 import com.devmeggie.blog_app.models.Post;
 import com.devmeggie.blog_app.pagination_criteria.PostPage;
@@ -37,9 +38,17 @@ public class PostController {
 
     @GetMapping("/{id}")
     public Post viewPostById(@PathVariable ("id")Long postId){
+
         return postservice.viewPostById(postId);
     }
 
+    @PostMapping("/modifyPost/{id}")
+    public Post modifyPost(@PathVariable("id") Long id,ModifyPostDto post){
+         return postservice.modifyPost(id,post);
+
+
+    }
 }
+
 
 
