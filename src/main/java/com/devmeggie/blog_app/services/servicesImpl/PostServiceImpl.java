@@ -61,6 +61,7 @@ public class PostServiceImpl implements PostService {
         return post;
     }
 
+
     @Override
     public Page<Post> viewAllPost(PostPage postPage) {
         List<Post> post = postRepo.findAll();
@@ -84,6 +85,11 @@ public class PostServiceImpl implements PostService {
         }
         Post post = postRepo.findById(postId).orElseThrow(() -> new NotFoundException("post doesn't"));
         postRepo.delete(post);
+    }
+
+    @Override
+    public Post viewPostById(Long postId) {
+        return postRepo.findById(postId).orElseThrow(()-> new NotFoundException("post doesnt exist"));
     }
 }
 

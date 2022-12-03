@@ -11,6 +11,9 @@ public interface PostService  {
     Page<Post>viewAllPost(PostPage postPage);
 
     void deletePost(Long postId);
-    
+
+    Post viewPostById(Long postId);
+
+
 
 }

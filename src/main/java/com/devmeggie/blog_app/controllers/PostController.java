@@ -33,8 +33,13 @@ public class PostController {
     public String deletePost(@PathVariable("postId") Long postId) {
         postservice.deletePost(postId);
         return "post deleted successfully";
-
     }
+
+    @GetMapping("/{id}")
+    public Post viewPostById(@PathVariable ("id")Long postId){
+        return postservice.viewPostById(postId);
+    }
+
 }
 
 
