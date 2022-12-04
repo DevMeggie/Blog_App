@@ -2,6 +2,7 @@ package com.devmeggie.blog_app.services.servicesImpl;
 
 import com.devmeggie.blog_app.dtos.ModifyPostDto;
 import com.devmeggie.blog_app.dtos.UpLoadPostDto;
+import com.devmeggie.blog_app.dtos.ViewPostDto;
 import com.devmeggie.blog_app.enums.Role;
 import com.devmeggie.blog_app.exceptions.NotFoundException;
 import com.devmeggie.blog_app.exceptions.UnauthorizedException;
@@ -22,7 +23,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -118,6 +118,46 @@ public class PostServiceImpl implements PostService {
 
         return postRepo.save(post1);
     }
+
+    @Override
+    public List<ViewPostDto> viewPostByCategory(Long categoryId) {
+        Category category = categoryRepo.findCategoriesById(categoryId).orElseThrow(()-> new NotFoundException("this post doesnt not exist"));
+        List<Post> posts = category.getPost();
+        List<ViewPostDto> postResponse = new ArrayList<>();
+        for(Post p: posts){
+            ViewPostDto res = ViewPostDto.builder()
+                    .title(p.getTitle())
+                    .imageUrl(p.getImageUrl())
+                    .content(p.getContent())
+                    .comments(p.getComment().size())
+                    .build();
+            postResponse.add(res);
+        }
+        return postResponse;
+    }
+
+
+
+
+
+
+
+
+//    @Override
+//    public List<ViewPostDto> viewPostByCategory(Long categoryId) {
+//        Category category = categoryRepo.findCategoriesById(categoryId)
+//                .orElseThrow(()-> new NotFoundException("category not found"));
+//        List<Post> post = category.getPost();
+//        List<ViewPostDto> postRespons = new ArrayList<>();
+//        for (Post c :post)
+//            ViewPostDto res = ViewPostDto.builder()
+//                    .title(c.getTitle())
+//                    .imageUrl(c.getImageUrl())
+//                    .content(c.getContent())
+//                    .build()
+//                    postResponse.add(res);
+//        return null;
+//    }
 }
 
 

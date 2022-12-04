@@ -2,16 +2,17 @@ package com.devmeggie.blog_app.dtos;
 
 import lombok.*;
 
+@Getter
+@Setter
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Builder
-public class UpLoadPostDto {
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class ViewPostDto {
     private String title;
     private String imageUrl;
     private String content;
-
-
-
+    private Integer likes;
+    private Integer comments;
 }

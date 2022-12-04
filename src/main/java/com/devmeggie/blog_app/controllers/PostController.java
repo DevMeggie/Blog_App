@@ -2,6 +2,7 @@ package com.devmeggie.blog_app.controllers;
 
 import com.devmeggie.blog_app.dtos.ModifyPostDto;
 import com.devmeggie.blog_app.dtos.UpLoadPostDto;
+import com.devmeggie.blog_app.dtos.ViewPostDto;
 import com.devmeggie.blog_app.models.Post;
 import com.devmeggie.blog_app.pagination_criteria.PostPage;
 import com.devmeggie.blog_app.services.PostService;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,7 +48,10 @@ public class PostController {
     public Post modifyPost(@PathVariable("id") Long id,ModifyPostDto post){
          return postservice.modifyPost(id,post);
 
-
+    }
+    @GetMapping("/postByCategoryId/{categoryId}")
+    public List<ViewPostDto> viewPostByCategoryId(@PathVariable("categoryId") Long categoryId){
+        return postservice.viewPostByCategory(categoryId);
     }
 }
 

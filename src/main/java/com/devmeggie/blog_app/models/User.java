@@ -2,7 +2,6 @@ package com.devmeggie.blog_app.models;
 
 import com.devmeggie.blog_app.enums.Gender;
 import com.devmeggie.blog_app.enums.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;

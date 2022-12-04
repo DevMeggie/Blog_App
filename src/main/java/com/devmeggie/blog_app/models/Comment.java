@@ -17,4 +17,8 @@ public class Comment extends BaseClass {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name ="post_id",referencedColumnName = "id")
     private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id_id")
+    private User userId;
 }
