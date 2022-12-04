@@ -30,6 +30,7 @@ public class Post extends BaseClass{
     private Category category;
 
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Comment> comment = new ArrayList<>();
 

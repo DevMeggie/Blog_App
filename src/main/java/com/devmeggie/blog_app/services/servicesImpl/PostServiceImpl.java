@@ -112,12 +112,14 @@ public class PostServiceImpl implements PostService {
             post1.setImageUrl(modifyPostDto.getImageUrl());
         }
 
-        if (Objects.nonNull(modifyPostDto.getContent()) && !"".equalsIgnoreCase(modifyPostDto.getContent())) {
-            post1.setContent(modifyPostDto.getContent());
-        }
+            if (Objects.nonNull(modifyPostDto.getContent()) && !"".equalsIgnoreCase(modifyPostDto.getContent())) {
+                post1.setContent(modifyPostDto.getContent());
+            }
 
-        return postRepo.save(post1);
-    }
+                postRepo.save(post1);
+                return post1;
+            }
+
 
     @Override
     public List<ViewPostDto> viewPostByCategory(Long categoryId) {
