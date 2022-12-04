@@ -35,4 +35,20 @@ public class CommentServeImpl implements CommentService {
 
         return "comment saved";
     }
-}
+
+    @Override
+    public int NoOfComment(Long postId) {
+        Post post = postRepo.findById(postId).orElseThrow(()-> new NotFoundException("post not found"));
+
+        return post.getComment().size();
+
+    }
+
+//    @Override
+//    public int numberOfLikes(Long postId) {
+//        Post post = postRepo.findById(postId).orElseThrow(()-> new NotFoundException("post not found"));
+//
+//        return post.getComment().size();
+
+    }
+

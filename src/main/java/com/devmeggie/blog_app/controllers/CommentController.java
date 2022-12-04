@@ -7,11 +7,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/comment")
+@RequestMapping("/api/v1/comment")
 public class CommentController {
     private final CommentService commentService;
     @PostMapping("/{id}")
     public String makeComment(@PathVariable("id") Long postId, @RequestBody Comment comment){
         return commentService.makeComment(postId,comment);
+    }
+
+    @GetMapping("/noOfComments/{id}")
+    public int noOfComment(@PathVariable ("id")Long postId ){
+        return commentService.NoOfComment(postId);
+
     }
 }
