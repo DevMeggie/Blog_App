@@ -19,7 +19,7 @@ import java.util.List;
 public class PostController {
 
     private final PostService postservice;
-    private final HttpSession httpSession;
+
 
     @PostMapping("/{id}")
     public Post uploadPost(@PathVariable("id") Long categoryId, @RequestBody UpLoadPostDto uploadPostDto) {
