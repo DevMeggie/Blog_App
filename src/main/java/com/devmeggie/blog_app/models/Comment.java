@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 public class Comment extends BaseClass {
-    @Column(length = 5000)
+    @Column(length = 250)
     private String comment;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)

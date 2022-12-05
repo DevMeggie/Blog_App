@@ -1,9 +1,6 @@
 package com.devmeggie.blog_app.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -15,6 +12,8 @@ import javax.persistence.Table;
 @Setter
 @Getter
 @Entity
+@Builder
+@ToString
 @Table(name="like_table")
 public class Like extends BaseClass{
     @ManyToOne

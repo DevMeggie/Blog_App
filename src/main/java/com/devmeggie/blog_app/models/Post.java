@@ -19,7 +19,7 @@ public class Post extends BaseClass{
     @Column(nullable = false,unique = true,length = 50)
     private String title;
 
-    @Column(nullable = false,length = 5000)
+    @Column(nullable = false,length = 200)
     private String content;
 
     private String imageUrl;
@@ -34,5 +34,8 @@ public class Post extends BaseClass{
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Comment> comment = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Like> like;
 
 }
