@@ -5,6 +5,8 @@ import com.devmeggie.blog_app.services.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/comment")
@@ -18,6 +20,10 @@ public class CommentController {
     @GetMapping("/noOfComments/{id}")
     public int noOfComment(@PathVariable ("id")Long postId ){
         return commentService.NoOfComment(postId);
+    }
 
+    @GetMapping("/viewPostComment/{id}")
+    public List<Comment> viewPostComment(@PathVariable("id") Long postId){
+        return commentService.viewPostComment(postId);
     }
 }

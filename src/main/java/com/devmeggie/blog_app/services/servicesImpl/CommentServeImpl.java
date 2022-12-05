@@ -10,6 +10,8 @@ import com.devmeggie.blog_app.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServeImpl implements CommentService {
@@ -44,11 +46,11 @@ public class CommentServeImpl implements CommentService {
 
     }
 
-//    @Override
-//    public int numberOfLikes(Long postId) {
-//        Post post = postRepo.findById(postId).orElseThrow(()-> new NotFoundException("post not found"));
-//
-//        return post.getComment().size();
+    @Override
+    public List<Comment> viewPostComment(Long postId) {
+        Post post = postRepo.findById(postId).orElseThrow(()-> new NotFoundException("post not found"));
+        return post.getComment();
+    }
 
     }
 
