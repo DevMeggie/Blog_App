@@ -73,7 +73,6 @@ public class PostServiceImpl implements PostService {
         Pageable pageable = PageRequest.of(postPage.getPageNumber(), postPage.getPageSize(), sort);
         return postRepo.findAll(pageable);
 
-
     }
 
     @Override
@@ -112,21 +111,21 @@ public class PostServiceImpl implements PostService {
             post1.setImageUrl(modifyPostDto.getImageUrl());
         }
 
-            if (Objects.nonNull(modifyPostDto.getContent()) && !"".equalsIgnoreCase(modifyPostDto.getContent())) {
-                post1.setContent(modifyPostDto.getContent());
-            }
+        if (Objects.nonNull(modifyPostDto.getContent()) && !"".equalsIgnoreCase(modifyPostDto.getContent())) {
+            post1.setContent(modifyPostDto.getContent());
+        }
 
-                postRepo.save(post1);
-                return post1;
-            }
+        postRepo.save(post1);
+        return post1;
+    }
 
 
     @Override
     public List<ViewPostDto> viewPostByCategory(Long categoryId) {
-        Category category = categoryRepo.findCategoriesById(categoryId).orElseThrow(()-> new NotFoundException("this post doesnt not exist"));
+        Category category = categoryRepo.findCategoriesById(categoryId).orElseThrow(() -> new NotFoundException("this post doesnt not exist"));
         List<Post> posts = category.getPost();
         List<ViewPostDto> postResponse = new ArrayList<>();
-        for(Post p: posts){
+        for (Post p : posts) {
             ViewPostDto res = ViewPostDto.builder()
                     .title(p.getTitle())
                     .imageUrl(p.getImageUrl())
@@ -139,27 +138,6 @@ public class PostServiceImpl implements PostService {
     }
 
 
-
-
-
-
-
-
-//    @Override
-//    public List<ViewPostDto> viewPostByCategory(Long categoryId) {
-//        Category category = categoryRepo.findCategoriesById(categoryId)
-//                .orElseThrow(()-> new NotFoundException("category not found"));
-//        List<Post> post = category.getPost();
-//        List<ViewPostDto> postRespons = new ArrayList<>();
-//        for (Post c :post)
-//            ViewPostDto res = ViewPostDto.builder()
-//                    .title(c.getTitle())
-//                    .imageUrl(c.getImageUrl())
-//                    .content(c.getContent())
-//                    .build()
-//                    postResponse.add(res);
-//        return null;
-//    }
 }
 
 

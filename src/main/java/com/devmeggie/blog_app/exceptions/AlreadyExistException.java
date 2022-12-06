@@ -7,6 +7,8 @@ public class AlreadyExistException extends RuntimeException{
         super("Already exist");
         this.message="Already exist";
     }
+
+
     public AlreadyExistException(String msg){
         super(msg);
         this.message= msg;
